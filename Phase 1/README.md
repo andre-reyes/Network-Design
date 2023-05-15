@@ -1,35 +1,29 @@
-﻿<a name="br1"></a>Template for Readme File.md 5/
+# Readme File
 
-Readme File
+## Title and Authors
 
-Title and Authors
+* Phase 1
 
-The name of this phase which you coded for. e.g.: phase 1, phase 2...
+* Andre Reyes
 
-Names of the group members.
+## Environment
 
-Environment
+* OS: Linux
 
-What OS you used for your code. e.g.: MacOS, Windows, Linux
+* Language: Python
 
-The name of the programming language you used. e.g.: C, C++, Python...
+* Python version: 3.10.6
 
-The version of programming language. e.g.: python 2.7 or python 3.5
+## Instructions
 
-Instructions
+* In detailed instructions that are well organized in steps.
 
-In detailed instructions that are well organized in steps.
+* If any speciﬁc folder is needed to be created, enunciate it.
 
-If any speciﬁc folder is needed to be created, enunciate it.
+* If any ﬁle is needed to be placed in any speciﬁc folder, enunciate it.
 
-If any ﬁle is needed to be placed in any speciﬁc folder, enunciate it.
+* In detailed console commands including ﬂags and arguments. e.g.: python something.py --option "long string"
 
-In detailed console commands including ﬂags and arguments. e.g.: python something.py --option "long
-
-string"
-
-If any code is developed by IDEs, show the following information: name of the IDE, in detailed
+* If any code is developed by IDEs, show the following information: name of the IDE, in detailed
 
 conﬁguration.
-
-1 / 1
