@@ -19,12 +19,16 @@
 
 from socket import *
 
-local_port = 12000         # Port number chosen from range of values (49152-65535) for private/temporary purposes
-bufferSize = 2048   
+local_port = 65309         # Port number chosen from range of values (49152-65535) for private/temporary purposes
+bufferSize = 2048          # 
 
+#create server socket
 server_socket = socket(AF_INET, SOCK_DGRAM)
 server_socket.bind(("",local_port))
+
 print("The server is ready to receive on port {}".format(local_port))
+
+#infinite loop to always be listening to port while active
 while True:
     message, client_address = server_socket.recvfrom(bufferSize)
     modified_message = message.decode().upper() + "\nclient port: {}".format(client_address[1])
