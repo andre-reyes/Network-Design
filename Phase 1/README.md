@@ -1,4 +1,4 @@
-# Readme File
+# README.md
 
 ## Title and Authors
 
@@ -16,14 +16,11 @@
 
 ## Instructions
 
-* In detailed instructions that are well organized in steps.
+* Download files and place in a folder
+* Open a terminal window
+* To run server, find the server file location and run using python: `python3 /home/username/Downloads/Phase1/UDPserver.py`. 
 
-* If any speciﬁc folder is needed to be created, enunciate it.
-
-* If any ﬁle is needed to be placed in any speciﬁc folder, enunciate it.
-
-* In detailed console commands including ﬂags and arguments. e.g.: python something.py --option "long string"
-
-* If any code is developed by IDEs, show the following information: name of the IDE, in detailed
-
-conﬁguration.
+  if successful you should see a message display that it is running
+* Now open a new terminal window and do the same for the client location: `python3 /home/username/Downloads/Phase1/UDPclient.py`
+* The client should now ask for input, type any input here and hit [enter]
+* The server should return with the same massage in all capital letters as well as server/client info.
