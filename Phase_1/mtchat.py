@@ -1,7 +1,7 @@
-#Andre Reyes
-#Network Design SU23
-#Phase one - send/recieve UDP messages
-#mtchat.py - multi threaded chat
+# Andre Reyes
+# Network Design SU23
+# Phase 1 - send/recieve UDP data packets
+# mtchat.py - multi threaded chat
 '''
     This is Phase one of the five phase project for Newtork Design SU23
     Description: In Phase 1 of the project, each student has to individually implement the standard user datagram protocol (UDP) sockets. 
@@ -71,7 +71,6 @@ def client(buffer, port):
 # Client  creates a socket to send and 
 # recieve a message from/to the server.
 
-
     HOST = "localhost" # localhost == 127.0.0.1
 
     client_socket = socket(AF_INET, SOCK_DGRAM)
@@ -90,6 +89,7 @@ def client(buffer, port):
         else:
             print ("\tmessage from server: {} \n\tserver address: {} \n\tserver port: {}\n".format(modified_message.decode(), address, port))
         
+
 
 if __name__ ==  '__main__':
     main()
