@@ -23,19 +23,20 @@ from threading import Thread
 from socket import *
 from time import sleep
 
-def server(buffer, port):
+# Server function takes in two arguments tp assign a port and buffer size to the socket and returns the modified data as a string to client
+def Server(buffer, port):
 
-    #create server socket
+    # create server socket
     server_socket = socket(AF_INET, SOCK_DGRAM)
     server_socket.bind(("",port))
-
     print("The server is ready to receive on port {}".format(port))
     
 
-    #infinite loop to always be listening to port while active
-    while bool:
+    # infinite loop to always be listening to port
+    while True:
         message, client_address = server_socket.recvfrom(buffer)
 
+    # on quit: server sends one last message to client to inform client to disconnect otherwise client endless loops waiting for server to respond
         if message.decode().lower() == 'q':
             server_socket.sendto('q'.encode(), client_address)
             server_socket.close()
@@ -44,20 +45,23 @@ def server(buffer, port):
         else:
             modified_message = message.decode().upper() + "\n\tclient port: {}".format(client_address[1])
             server_socket.sendto(modified_message.encode(), client_address)
-    
-def client(buffer, port):
-    server_name = "localhost" # can also be 127.0.0.1
+
+
+# Client function takes in two arguments to assign a port and buffer size to the client socket, sends user input to server and returns a string representation 
+def Client(buffer, port):
+    HOST = "localhost" # localhost == 127.0.0.1
 
     # create socket for client
     client_socket = socket(AF_INET, SOCK_DGRAM)
 
     # grab message from user and send it to server
-    # 
     while True:
         message = input('Input lowercase sentence (Enter "q" or "Q" to end): ')    
-        client_socket.sendto(message.encode(),(server_name, port))
+        client_socket.sendto(message.encode(),(HOST, port))
         modified_message, server_address = client_socket.recvfrom(buffer)
         address, port = server_address   
+
+        # on quit: using the modified_message from the server otherwise the thread will continue and close causing socket error on server side
         if modified_message.decode().lower() == 'q':
             client_socket.close()
             print("The client has ended.")
@@ -71,8 +75,8 @@ if __name__ ==  '__main__':
     BUFFER = 2048
 
     print ("Creating threads...")
-    server_thread = Thread(target=server, args=(BUFFER, PORT,))
-    client_thread = Thread(target=client, args=(BUFFER, PORT,))
+    server_thread = Thread(target=Server, args=(BUFFER, PORT,))
+    client_thread = Thread(target=Client, args=(BUFFER, PORT,))
     
     print ("Starting threads...")
     server_thread.start()
