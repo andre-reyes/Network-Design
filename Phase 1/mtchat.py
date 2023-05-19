@@ -15,8 +15,8 @@ def server(buffer, port):
     while bool:
         message, client_address = server_socket.recvfrom(buffer)
 
-        if message.decode().lower() == 'quit':
-            server_socket.sendto('quit'.encode(), client_address)
+        if message.decode().lower() == 'q':
+            server_socket.sendto('q'.encode(), client_address)
             server_socket.close()
             print("The server has ended.")
             break
@@ -33,11 +33,11 @@ def client(buffer, port):
     # grab message from user and send it to server
     # 
     while True:
-        message = input('Input lowercase sentence (Enter "quit" to end): ')    
+        message = input('Input lowercase sentence (Enter "q" or "Q" to end): ')    
         client_socket.sendto(message.encode(),(server_name, port))
         modified_message, server_address = client_socket.recvfrom(buffer)
         address, port = server_address   
-        if modified_message.decode().lower() == 'quit':
+        if modified_message.decode().lower() == 'q':
             client_socket.close()
             print("The client has ended.")
             break
