@@ -7,7 +7,6 @@ The TCP/IP stack has five layers, namely application, transport, network, link, 
   - [x] UDP recieving
 
 
-## [Phase 1](Phase%202/)
 ## [Phase 2](Phase%203/)
 ## [Phase 3](Phase%204/)
 ## [Phase 4](Phase%205/)
