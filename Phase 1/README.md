@@ -22,5 +22,5 @@
 
   if successful you should see a message display that the server is running.
 * The client side should now ask for input, type any input here and hit [enter]
-* The server should return with the same massage in all capital letters as well as server/client info.
+* The server should return with the same message in all capital letters as well as server/client info.
 * To end the process type "q" or "Q"
