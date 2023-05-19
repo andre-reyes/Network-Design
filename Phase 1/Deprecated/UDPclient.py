@@ -1,4 +1,5 @@
 #Andre Reyes
+#Network Design SU23
 #Phase one - send/recieve UDP messages
 
 '''

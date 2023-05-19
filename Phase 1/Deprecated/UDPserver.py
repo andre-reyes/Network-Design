@@ -1,5 +1,7 @@
 #Andre Reyes
+#Network Design SU23
 #Phase one - send/recieve UDP messages
+
 
 '''
     This is Phase one of the five phase project for Newtork Design SU23
