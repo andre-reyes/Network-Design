@@ -14,6 +14,8 @@
 
 * Python version: 3.10.6
 
+* IDE: VS Code
+
 ## Instructions
 
 * Download files and place in a folder
