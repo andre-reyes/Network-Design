@@ -9,11 +9,11 @@
 ## Purpose of the phase
 
 ## Code Explanation
-![imports.png](Phase_1\images\imports.png "Import Block")
-![main.png](Phase_1\images\main.png "Main Function")
-![server.png](Phase_1\images\server.png "Server Function")
-![client.png](Phase_1\images\client.png "Client Function")
-![](Phase_1\images\ "")
+![imports.png](images/imports.png "Imported Libraries")
+![main.png](images/main.png "Main Function")
+![server.png](images/server.png "Server Function")
+![client.png](images/client.png "Client Function")
+![]()
 
 ## Execution Example
 ![command.png](D:\CODE\Network_design_su23\Net-Design\Phase_1\images\command.png "Run command")
