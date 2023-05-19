@@ -13,7 +13,11 @@
 ![main.png](images/main.png "Main Function")
 ![server.png](images/server.png "Server Function")
 ![client.png](images/client.png "Client Function")
-![]()
+* The client function is similar to the server function but does so in the opposite order.
+* It waits for user input, once user input is found, it sends the data through the assigned address and port for the server socket
+* it then listens to a response from the server, once a response is heard it isn't the quit value, it outputs a string with the echo/info
+![initiateMain.png](/images/initiateMain.png "Initiate main")
+* This if statement at the end of the file ensures that main() is run and is needed to run script directly.
 
 ## Execution Example
 ![command.png](D:\CODE\Network_design_su23\Net-Design\Phase_1\images\command.png "Run command")
