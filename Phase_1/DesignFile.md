@@ -25,9 +25,11 @@
 * When data is recieved from the client, it is tested on quit conditions otherwise it modifies the message, adds the client port informatyion and is sent back to the client 
 
 ![client.png](images/client.png "Client Function")
-
-
-![]()
+* The client function is similar to the server function but does so in the opposite order.
+* After the client socket is made, it waits for user input, once user input is found, it sends the data through the assigned address and port for the server socket
+* it then listens to a response from the server, once a response is heard and isn't the quit value, it outputs a string with the echo/info
+![initiateMain.png](images/initiateMain.png "Initiate main")
+* This if statement at the end of the file ensures that main() is run and is needed to run script directly.
 
 ## Execution Example
 ![command.png](images/command.png "Run command")
