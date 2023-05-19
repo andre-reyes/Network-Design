@@ -19,7 +19,7 @@
 ## Instructions
 
 * Download files and place in a folder
-* Open a terminal window
+* Open a terminal window of choice
 * To run, find the server file location and run using python: i.e. `python3 /home/username/Downloads/Phase1/mtchat.py`
 
   if successful you should see a message display that the server is running.
