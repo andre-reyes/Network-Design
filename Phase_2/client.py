@@ -23,8 +23,8 @@ def client(host, port):
             print("The client has stopped.")
             break
         else:
-            data = open("Net-Design\\Phase_2\\src\\" + filename, "rb")       
-            rdt_send(data)
+            data = open("send_files\\" + filename, "rb")       
+            rdt_send(data, filename)
         
         
         

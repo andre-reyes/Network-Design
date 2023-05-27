@@ -38,9 +38,9 @@ def make_packets(data): # Creates a packet containing the data
 # Receiving side 
 
 def rdt_recv(packet): # called from the server side to recieve a packet
-    data = open("Net-Design\\Phase_2\\src\\test\\testn.bmp", 'ab')
+    data = open("received_files\\testn.bmp", 'ab')
     data.write(packet)
     data.close()
-    data.open('/')
+    
               
 
