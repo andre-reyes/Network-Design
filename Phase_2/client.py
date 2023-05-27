@@ -24,7 +24,7 @@ def client(host, port):
             break
         else:
             data = open("send_files\\" + filename, "rb")       
-            rdt_send(data, filename)
+            rdt_send(data)
         
         
         
