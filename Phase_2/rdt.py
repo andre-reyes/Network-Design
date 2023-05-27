@@ -18,7 +18,9 @@ def rdt_send(data): # Called from client side to Send data to rdt module for par
     packet_list = make_packets(data)
     for packet in packet_list:
         udp_client.sendto(packet, (host, port))
-        udp_client.recvfrom(packet_size)
+        server_message = udp_client.recv(packet_size)
+    
+    print(server_message.decode())
     
 
     

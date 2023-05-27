@@ -12,6 +12,6 @@ print("The server is ready to receive on port {}".format(local_port))
 #infinite loop to always be listening to port while active
 while True:
     packet, client_address = server_socket.recvfrom(bufferSize)
-
+    server_socket.sendto("received file!".encode(), client_address)
     rdt_recv(packet)
-    server_socket.sendto("received packet!".encode(), client_address)
+    
