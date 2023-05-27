@@ -11,26 +11,27 @@ sequence_number = 0 # counter for packet number
 
 
 # sending side
-def rdt_send(data): # Called from client side to Send data to rdt module for parsing into packets
+def rdt_send(data, filename): # Called from client side to Send data to rdt module for parsing into packets
     udp_client = socket(AF_INET, SOCK_DGRAM)
     udp_client.connect((host, port))
 
-    packet_list = make_packets(data)
+    packet_list = make_packets(data, filename)
     for packet in packet_list:
         udp_client.sendto(packet, (host, port))
-        server_message = udp_client.recv(packet_size)
     
+    server_message = udp_client.recv(packet_size)
     print(server_message.decode())
     
 
     
     
 
-def make_packets(data): # Creates a packet containing the data
+def make_packets(data, filename): # Creates a packet containing the data
     packet_list = []
     packet = data.read(packet_size)
    
     while packet:
+        packet_list.append(filename.encode())
         packet_list.append(packet)
         packet = data.read(packet_size)
     return packet_list
@@ -39,8 +40,9 @@ def make_packets(data): # Creates a packet containing the data
 
 # Receiving side 
 
-def rdt_recv(packet): # called from the server side to recieve a packet
-    with open("received_files\\testn.bmp", 'ab') as data:
+def rdt_recv(packet, filename): # called from the server side to recieve a packet
+    file_path = "received_files\\" + filename 
+    with open(file_path, 'ab') as data:
         data.write(packet)
     
               
