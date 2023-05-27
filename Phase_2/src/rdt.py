@@ -3,15 +3,24 @@
 # channel. In practice, the rdt_send(data) event would result from a procedure call (for example, to
 # rdt_send() ) by the upper-layer application.
 
-
+from socket import *
+host = "localhost"
+port = 9876
 packet_size = 1024 # 1024 bits == 1 Kb
 sequence_number = 0 # counter for packet number
 
 
 # sending side
 def rdt_send(data): # Called from client side to Send data to rdt module for parsing into packets
+    udp_client = socket(AF_INET, SOCK_DGRAM)
+    udp_client.connect((host, port))
+
     packet_list = make_packets(data)
-    print(packet_list)
+    for packet in packet_list:
+        udp_client.sendto(packet, (host, port))
+        udp_client.recvfrom(packet_size)
+    
+
     
     
 
@@ -19,7 +28,6 @@ def make_packets(data): # Creates a packet containing the data
     packet_list = []
     packet = data.read(packet_size)
    
-    
     while packet:
         packet_list.append(packet)
         packet = data.read(packet_size)
@@ -29,30 +37,10 @@ def make_packets(data): # Creates a packet containing the data
 
 # Receiving side 
 
-def extract(packet, data): # extract packet from data              
-    pass
-def deliver_data(data): # send to server
-    pass
-def rdt_recv(packet): # called from the server side to recieve a paket
-    while packet:
-        data = open("Net-Design\\Phase_2\\src\\test\\testn.bmp", 'ab')
-        data.write(packet)
-        data.close()
-    deliver_data(data)
+def rdt_recv(packet): # called from the server side to recieve a packet
+    data = open("Net-Design\\Phase_2\\src\\test\\testn.bmp", 'ab')
+    data.write(packet)
+    data.close()
+
               
-              
-    # extract(packet, data) 
-    # deliver_data(data)
-    
-def rdt_send():
-    pass
-def rdt_recv():
-    pass
-def deliver_data():
-    pass
-def make_pkt(data):
-# Creates a packet containing the data
-    pass
-def udt_send()
-# To transfer packet over unreliable channel to reciever
-    pass
+

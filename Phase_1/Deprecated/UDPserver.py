@@ -21,8 +21,8 @@
 
 from socket import *
 
-local_port = 65309         # Port number chosen from range of values (49152-65535) for private/temporary purposes
-bufferSize = 2048          # 
+local_port = 9876         # Port number chosen from range of values (49152-65535) for private/temporary purposes
+bufferSize = 1024          # 
 
 #create server socket
 server_socket = socket(AF_INET, SOCK_DGRAM)
