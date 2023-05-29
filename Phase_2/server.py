@@ -11,6 +11,8 @@ server_socket.bind(("",local_port))
 
 print("The server is ready to receive on port {}".format(local_port))
 filename, client_address = server_socket.recvfrom(bufferSize)
+file_size, client_address = server_socket.recvfrom(bufferSize)
+print('Downloading: ' + filename.decode() + file_size.decode())
 #infinite loop to always be listening to port while active
 while True:
     packet, client_address = server_socket.recvfrom(bufferSize)
