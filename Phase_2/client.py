@@ -12,11 +12,15 @@ def client():
 
     while True:
         # Get user input
-        filename = input('Enter filename(default is test_file.bmp): ')
+        filename = input('Enter filename (default is test_file.bmp): ')
         file_path = os.path.join(send_path, filename)
         
         if not os.path.exists(file_path) or not filename:
-            filename = 'test_file.bmp'
+            no_file_found = input('Error: file not found. would you like use the default name test_file.bmp (y or n)? ')
+            if no_file_found == 'y'.lower():
+                filename = 'test_file.bmp'
+            else:
+                continue
 
         file_path = os.path.join(send_path, filename)
         with open(file_path, "rb") as data:       

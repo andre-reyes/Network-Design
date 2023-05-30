@@ -2,26 +2,25 @@ from socket import *
 from rdt import *
 import time
 from tqdm import tqdm
-
+import debugpy
 
 def server():
     local_port = 9876         # Port number chosen from range of values (49152-65535) for private/temporary purposes
-    bufferSize = 1024          # 
-    filename = "receivedFile.bmp" # default filename
-    packet_list = []
-    cycle_counter = 0
+    bufferSize = 1024         # size of file per packet
+    packet_list = []          # initialize list to store packets as the come in
 
 
-    #create server socket
+    # Create server socket
     server_socket = socket(AF_INET, SOCK_DGRAM)
     server_socket.bind(("",local_port))
     print("The server is ready to receive on port {}".format(local_port))
 
-    #receive file info
+    # Receive file info
     filename, client_address = server_socket.recvfrom(bufferSize)
     file_size, client_address = server_socket.recvfrom(bufferSize)
+    filename = filename.decode()
     file_size = int(file_size.decode())/1000
-    print('\nDownloading: ' + filename.decode() + ', ' + 'File size: ' + str(file_size) + ' KB')
+    print('\nDownloading: ' + filename + ', ' + 'File size: ' + str(file_size) + ' KB')
 
 
 
@@ -31,18 +30,21 @@ def server():
         start = time.monotonic_ns()
 
         if packet == b'<EDF>':
-            server_socket.sendto("Server received file!".encode(), client_address)
-            # server_socket.close()
+            print('Download complete.')
+            server_socket.sendto("Server received file!\n".encode(), client_address)
+            rdt_rcv(packet_list, filename)
+            server_socket.close()
             break
+
         else:
             packet_list.append(packet)
 
-    rdt_rcv(packet_list, filename.decode())
+    # End sequence
     end = time.monotonic_ns()
-    cycle_counter += 1
-    cycle_timer = (end-start)/1000000 #converts nanoseconds to milliseconds
+    cycle_timer_in_milliseconds = (end-start)/1000000 
+    print('done in: ' + f'{cycle_timer_in_milliseconds:.0f}' + ' ms\n')
+    server()
 
-    print('done in: ' + f'{cycle_timer:.0f}' + ' ms')
 
 if __name__ ==  '__main__':
     server()
