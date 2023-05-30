@@ -13,15 +13,9 @@ def client(host, port):
     while True:
         # Get user input
         filename = input('Enter filename(default: just hit enter): ')
-        # if filename == '':
-        #     filename = 'test_file.bmp'
+        if filename == '':
+            filename = 'test_file.bmp'
 
-        filename = 'test_file.bmp'
-        # End condition here
-        if filename.lower() == 'q':
-            # client_socket.close()
-            print("The client has stopped.")
-            break
         else:
             data = open("send_files\\" + filename, "rb")       
             rdt_send(data, filename)

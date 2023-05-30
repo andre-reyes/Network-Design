@@ -19,19 +19,22 @@ def rdt_send(data, filename): # Called from client side to Send data to rdt modu
     udp_client.connect((host, port))
     
 
-    #gather info for file
+    # gather info for file
     packet_list = make_packets(data)
     file_path = os.path.join('.\\send_files', filename)
     file_size = os.path.getsize(file_path)
+
+    # send data and then send EOF tag to let server know it's done
+    print('Sending '+ filename + '...')
     udp_client.sendto(str(filename).encode(), (host, port))
     udp_client.sendto(str(file_size).encode(), (host, port))
     
-    #send data and then send EOF tag to let server know it's done
-    print('Sending '+ filename)
     for packet in packet_list:
         udp_client.sendto(packet, (host, port))
 
     udp_client.sendto(b'<EDF>', (host, port))
+
+    # Verify to client file was received
     server_message = udp_client.recv(packet_size)
     print(server_message.decode())
     
@@ -47,11 +50,13 @@ def make_packets(data): # Creates a packet containing the data
     
 
 # Receiving side 
-def rdt_rcv(packet_list):
-    file_path = "received_files\\resssceived.bmp" 
+
+def rdt_rcv(packet_list, filename):
+    file_path = "received_files\\" + filename
     for packet in packet_list:
         with open(file_path, 'ab') as data:
             data.write(packet)
+    print('\nFile saved to: ' + file_path)
 
 
     
