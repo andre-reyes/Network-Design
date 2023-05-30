@@ -1,27 +1,27 @@
 from socket import *
 from rdt import *
-host = "localhost"
-port = 9876
-buffer = 1024
+import os.path
 
-def client(host, port):
-    
+
+
+def client():
+    send_path = 'send_files\\'
     
     print ("the Client has connected to {}".format(host))
 
 
     while True:
         # Get user input
-        filename = input('Enter filename(default: just hit enter): ')
-        if filename == '':
+        filename = input('Enter filename(default is test_file.bmp): ')
+        file_path = os.path.join(send_path, filename)
+        
+        if not os.path.exists(file_path) or not filename:
             filename = 'test_file.bmp'
 
-        else:
-            data = open("send_files\\" + filename, "rb")       
+        file_path = os.path.join(send_path, filename)
+        with open(file_path, "rb") as data:       
             rdt_send(data, filename)
-        
-        
         
 
 if __name__ ==  '__main__':
-    client(host, port)
+    client()
