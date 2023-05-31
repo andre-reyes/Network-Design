@@ -2,7 +2,7 @@
 
 ## Title and Authors
 
-* Phase 1
+* Phase 2
 
 * Andre Reyes
 
@@ -11,14 +11,14 @@
 
 ## Purpose of the phase
 ---------------------------------------------------------------------------
-### **Phase 1**
-The Purpose of this phase is to learn more about the transport layer (TCP/UDP). Particularly, the ability to transport messages, or data, in between a UDP client and a UDP server both ways. 
+
 ### **Phase 2**
 To transfer a file beterrn a UDP client process and a UDP server process. This is done by providing reliable data transfer (RDT) 1.0 service using the UDP connection developed in Phase 1. Ultimately sending and recieving data using packets, one at a time.
 </br>
 
 ## Code Explanation
----------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
 ### **Imports**
 ![imports.png](images/imports.png "Imported Libraries")
 
@@ -28,50 +28,69 @@ To transfer a file beterrn a UDP client process and a UDP server process. This i
 
 </br>
 
-### **main()**
-![main.png](images/main.png "Main Function")
-* main() is responsible for creating and running the seperate client and server threads. The options arguments passed to the threads are to have one location where the port and buffer size are determined.
-* A sleep function is used between client and server startup to avoid the client starting before the server. The value chosen is somewhat arbitrary.
-* Using the ".join()" method allows each thread to run and continues when the other is finished.
+### **server(): Part 1**
+![server_part_1.png](images/server_part_1.png "Server Function part 1")
+* server() is responsible for creating the sockets and listening for the client data. 
+* The server socket first receives file information sent from the client before starting file transfer.
+</br>
+
+### **server(): Part 2**
+
+![server_part_2.png](images/server_part_2.png "Server Function part 2")
+* When data is recieved from the client, it is tested on end conditions. otherwise it takes the packet information and appends it to a list
+* Once the end condition is met, it takes the new packeet list and sends it to rdt_rcv where it will be iterated through onto a file write as binary
 
 </br>
 
-### **server()**
-![server.png](images/server.png "Server Function")
-* server() is responsible for creating the sockets and listening for the client data. The server socket is in an infinite loop until the client sends a notice to quit the operation and break.
-* When data is recieved from the client, it is tested on quit conditions otherwise it modifies the message, adds the client port informatyion and is sent back to the client .
+### **UDP_client.py: rdt_rcv()**
+![rdt_rcv.png](images/rdt_rcv.png "rdt receive function")
+* rdt_rcv is the receiving side of the UDP-client.py and is responsible for writing the packet_list sent from the server along with the filename and appended onto a file write function
+* the `with open() as ____:` is used as a safe way to open/close files without having to stat the close() method
 
 </br>
 
 ### **client()**
 ![client.png](images/client.png "Client Function")
-* The client function is similar to the server function but does so in the opposite order.
-* After the client socket is made, it waits for user input, once user input is found, it sends the data through the assigned address and port for the server socket.
-* it then listens to a response from the server, once a response is heard and isn't the quit value, it outputs a string with the echo/info.
+* The client function is similar to the server function but does so in the opposite way.
+* It waits for user input, once user inputs filename
+it then converts the file to a list of binary values broken up in the specified buffer: 1024 bits
+
 
 </br>
 
-### **__ name __**
+### **UDP_client.py: rdt_send()**
+![rdt_send.png](images/rdt_send.png "rdt send function")
+* rdt_send is responsible for all the network communication from the client to the server.
 
-![initiateMain.png](images/initiateMain.png "Initiate main")
-* This if statement at the end of the file ensures that main() is run and is needed to run script directly.
+* Creates the sockets for communication and then sends initial file information based on the user's input file.
+
+* Then iterates in a for loop in order to send the individual packets through the socket to the server
+
+* Also sends a <EDF> **E**n**D** of **F**ile flag to signify to the server it is done receiving. This was chosen due to the lack of knowledge if anywhere in the packet list there were any similar flags of EOF or END, so a combination of the two was mad arbitrarily.
+
+</br>
+
+### **UDP_client.py: make_packet()**
+![make_packet.png](images/make_packet.png "Make packet function")
+* This function is called from rdt_send() in order to create a packet list without cluttering the main send function
+* This could also be used in other ways to append various forms of data into lists in future iterations (i.e. if the server side ever sends a file back to the client)
 
 </br>
 
 ## Execution Example
 ---------------------------------------------------------------------------
 ### **Command**
-![command.png](images/command.png "Run command")
+![start_command.png](images/start_command.png "Run command")
 
 </br>
 
 ### **User Input**
-![result1.png](images/result1.png "Result after command")
+![result1.png](images/execution.png "Result after command")
 
 </br>
 
 ### **Result**
-![result2.png](images/result2.png "Result after user input")
+![results.png](images/results.png "Result after user input")
 
 
 

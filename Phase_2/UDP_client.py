@@ -1,4 +1,4 @@
-# The sending side of rdt simply accepts data from the upper layer via the rdt_send(data) event,
+# UDP_client.py is the sending side of rdt simply accepts data from the upper layer via the rdt_send(data) event,
 # creates a packet containing the data (via the action make_pkt(data) ) and sends the packet into the
 # channel. In practice, the rdt_send(data) event would result from a procedure call (for example, to
 # rdt_send() ) by the upper-layer application.
