@@ -8,11 +8,11 @@
 
 ## Environment
 
-* OS: Linux
+* OS: Windows 11 Pro
 
 * Language: Python
 
-* Python version: 3.10.6
+* Python version: 3.111.0
 
 * IDE: VS Code
 

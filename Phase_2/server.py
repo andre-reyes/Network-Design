@@ -1,8 +1,6 @@
 from socket import *
-from rdt import *
+from UDP_client import *
 import time
-from tqdm import tqdm
-import debugpy
 
 def server():
     local_port = 9876         # Port number chosen from range of values (49152-65535) for private/temporary purposes
@@ -12,7 +10,7 @@ def server():
 
     # Create server socket
     server_socket = socket(AF_INET, SOCK_DGRAM)
-    server_socket.bind(("",local_port))
+    server_socket.bind(('',local_port))
     print("The server is ready to receive on port {}".format(local_port))
 
     # Receive file info
@@ -27,7 +25,7 @@ def server():
     #infinite loop to always be listening to port for packets
     while True:
         packet, client_address = server_socket.recvfrom(bufferSize)
-        start = time.monotonic_ns()
+        transfer_start = time.monotonic_ns()
 
         if packet == b'<EDF>':
             print('Download complete.')
@@ -40,8 +38,8 @@ def server():
             packet_list.append(packet)
 
     # End sequence
-    end = time.monotonic_ns()
-    cycle_timer_in_milliseconds = (end-start)/1000000 
+    transfer_end = time.monotonic_ns()
+    cycle_timer_in_milliseconds = (transfer_end-transfer_start)/1000000 
     print('done in: ' + f'{cycle_timer_in_milliseconds:.0f}' + ' ms\n')
     server()
 

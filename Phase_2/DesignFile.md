@@ -11,8 +11,10 @@
 
 ## Purpose of the phase
 ---------------------------------------------------------------------------
+### **Phase 1**
 The Purpose of this phase is to learn more about the transport layer (TCP/UDP). Particularly, the ability to transport messages, or data, in between a UDP client and a UDP server both ways. 
-
+### **Phase 2**
+To transfer a file beterrn a UDP client process and a UDP server process. This is done by providing reliable data transfer (RDT) 1.0 service using the UDP connection developed in Phase 1. Ultimately sending and recieving data using packets, one at a time.
 </br>
 
 ## Code Explanation

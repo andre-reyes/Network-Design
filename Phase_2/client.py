@@ -1,5 +1,5 @@
 from socket import *
-from rdt import *
+from UDP_client import *
 import os.path
 
 
@@ -12,7 +12,7 @@ def client():
 
     while True:
         # Get user input
-        filename = input('Enter filename (default is test_file.bmp): ')
+        filename = input('\nEnter filename (default is test_file.bmp): ')
         file_path = os.path.join(send_path, filename)
         
         if not os.path.exists(file_path) or not filename:

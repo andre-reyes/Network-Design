@@ -6,6 +6,7 @@
 from socket import *
 from time import sleep
 import os.path
+
 host = "localhost"
 port = 9876
 packet_size = 1024 # 1024 bits == 1 Kb
@@ -26,10 +27,10 @@ def rdt_send(data, filename): # Called from client side to Send data to rdt modu
 
     # send data and then send EOF tag to let server know it's done
     print('Sending '+ filename + '...')
+    udp_client.sendto(str(filename).encode(), (host, port))
+    udp_client.sendto(str(file_size).encode(), (host, port))
     
     for packet in packet_list:
-        udp_client.sendto(str(filename).encode(), (host, port))
-        udp_client.sendto(str(file_size).encode(), (host, port))
         udp_client.sendto(packet, (host, port))
 
     udp_client.sendto(b'<EDF>', (host, port))
