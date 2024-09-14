@@ -1,5 +1,5 @@
-# Network Design course at UML SU23
-Network design course repo for Summer 2023
+# Network Design: Principles, Protocols & Applications
+Network design course repo for Summer 2023 with Professor Vinod Vokkarane
 The TCP/IP stack has five layers, namely application, transport, network, link, and physical.
 
 ## [Phase 1](Phase_1/)
